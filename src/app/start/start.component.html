@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="employees" *ngIf="canShowEmployees; else noEmployees">
+    <div class="row" *ngFor="let employee of employees">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h3>{{ employee.name }}</h3>
+          </div>
+          <div class="card-body">
+              <p class="card-text">{{ employee.department }}</p>
+              <div class="has-been-rated" *ngIf="employee.hasBeenRated; else notRated">
+                <!-- aggregate score would be shown here, like so: -->
+                <!-- <p class="lead">3.5/5 stars!</p> -->
+              </div>
+              <ng-template #notRated>
+                <div class="not-rated">
+                  <p class="lead">This employee has not been rated.</p>
+                  <a [routerLink]="['/rate-employee:employee.id']" class="btn btn-primary">Rate</a>
+                </div>
+              </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noEmployees>
+    <h3 class="text-uppercase">No employees</h3>
+    <a [routerLink]="['/add-employee']" class="btn btn-primary">Add Employees</a>
+  </ng-template>
+
+</div>

@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'employee-review';
+  user: any;
+  isLoggedIn = false;
+  title = 'Employee Review App';
+
+  constructor() {
+    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(this.user);
+    if (this.user) {
+      this.isLoggedIn = true;
+    }
+  }
 }

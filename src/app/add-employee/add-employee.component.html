@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <form (ngSubmit)="saveEmployee(); form.reset()" #form="ngForm">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="employee.name" required
+          #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          this is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" class="form-control" name="department" id="department" [(ngModel)]="employee.department" required
+          #department="ngModel">
+        <div [hidden]="department.valid || department.pristine" class="alert alert-danger">
+          department is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-secondary btn-block" [disabled]="!form.valid">Save</button>
+
+    </form>
+
+  </div>
+  <p class="lead text-center">{{ prompt }}</p>
+</div>
